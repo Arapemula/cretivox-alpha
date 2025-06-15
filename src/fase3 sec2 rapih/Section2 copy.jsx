@@ -1,5 +1,3 @@
-// Section2.jsx
-
 import React from "react";
 
 const Section2 = ({ textWrapperRef, tailRef }) => {
@@ -24,12 +22,7 @@ const Section2 = ({ textWrapperRef, tailRef }) => {
             margin: 0,
           }}
         >
-          {/* UBAH BAGIAN INI */}
-          <span className="font-varela">emang nya naufal arhab itu </span>
-          <span ref={tailRef} className="font-caprasimo">
-            siapa sih ?
-          </span>
-          {/* SAMPAI SINI */}
+          emang nya naufal arhab itu <span ref={tailRef}>siapa sih ?</span>
         </h1>
       </div>
     </section>
