@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // Impor CSS baru untuk komponen ini
 import "../css/containerkeenam.css";
 
-const Section5 = () => {
+const Section6 = () => {
   // --- Logika dari Lakbanbawah ---
   const text1Ref = useRef(null);
   const text2Ref = useRef(null);
@@ -63,4 +63,4 @@ const Section5 = () => {
   );
 };
 
-export default Section5;
+export default Section6;
