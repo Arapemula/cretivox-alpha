@@ -2,12 +2,10 @@ import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import Section1 from "./components/Section1";
-import Section2 from "./components/Section2";
-import Section3 from "./components/Section3";
-import Section4 from "./components/Section4";
-import Section5 from "./components/Section5"; 
-import Section6 from "./components/Section6"; 
+import Section1 from "../components/Section1";
+import Section2 from "../components/Section2";
+import Section3 from "../components/Section3";
+import Section4 from "../components/Section4";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -16,15 +14,20 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 function App() {
   const section1Ref = useRef(null);
   const section2Ref = useRef(null);
+  const section3Ref = useRef(null);
+  const section4Ref = useRef(null);
+
   const section2TextWrapperRef = useRef(null);
   const section2TailRef = useRef(null);
-  const horizontalContainerRef = useRef(null);
-  const section5Ref = useRef(null); 
-  const section6Ref = useRef(null); 
 
   useLayoutEffect(() => {
+    // Tambahkan pengecekan untuk memastikan semua elemen siap
+    if (!section1Ref.current || !section2Ref.current || !section3Ref.current || !section4Ref.current || !section2TextWrapperRef.current || !section2TailRef.current) {
+      return;
+    }
+    
     const ctx = gsap.context(() => {
-      // --- SECTION 1 ke 2 (Tetap Sama) ---
+      // --- SECTION 1 ke 2: Nyangkut + Scroll ke Section 2 (Tidak ada perubahan) ---
       gsap.timeline({
         scrollTrigger: {
           trigger: section1Ref.current,
@@ -32,6 +35,7 @@ function App() {
           end: "+=1400",
           scrub: true,
           pin: true,
+          anticipatePin: 1,
           onComplete: () => {
             gsap.to(window, {
               duration: 1,
@@ -48,87 +52,76 @@ function App() {
       .to("#text3", { opacity: 1, duration: 0.3 })
       .to("#arhab-img", { opacity: 1, duration: 0.4 });
 
-      // --- Animasi Teks di dalam Section 2 (Tetap Sama) ---
+      // --- [PERBAIKAN] SECTION 2: Pin + Animasi Teks + Auto Scroll ke Section 3 ---
       const finalX = window.innerWidth / 2 - (section2TailRef.current.offsetLeft + section2TailRef.current.offsetWidth / 2);
-      gsap.timeline({
-          scrollTrigger: {
-              trigger: section2Ref.current,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1,
-          }
-      }).fromTo(section2TextWrapperRef.current, { x: window.innerWidth }, { x: finalX, ease: "none" });
-
-
-      // --- SECTION 2 ke 3: Pin lalu Auto Scroll ke AWAL SECTION HORIZONTAL ---
-      gsap.timeline({
+      
+      const section2Timeline = gsap.timeline({
         scrollTrigger: {
           trigger: section2Ref.current,
           start: "center center",
-          end: "+=1000",
+          end: "+=1000", // Teks akan selesai bergerak di akhir pin
           scrub: true,
           pin: true,
+          anticipatePin: 1,
           onComplete: () => {
             gsap.to(window, {
               duration: 1,
-              scrollTo: { y: horizontalContainerRef.current },
+              scrollTo: { y: section3Ref.current },
               ease: "power2.inOut",
             });
           },
         },
       });
-      
-      // --- SECTION 3 ke 4: Animasi Scroll Horizontal ---
+
+      // GABUNGKAN ANIMASI TEKS KE DALAM TIMELINE PIN INI
+      section2Timeline.fromTo(
+        section2TextWrapperRef.current,
+        { x: window.innerWidth }, // Mulai dari luar layar kanan
+        { x: finalX, ease: "none" } // Berakhir di tengah layar
+      );
+
+
+      // --- SECTION 3 ke 4: Pin lalu Auto Scroll ke Section 4 (Tidak ada perubahan) ---
       gsap.timeline({
         scrollTrigger: {
-          trigger: horizontalContainerRef.current,
+          trigger: section3Ref.current,
+          start: "center center",
+          end: "+=1000",
+          scrub: true,
           pin: true,
-          scrub: 1,
-          start: "top top",
-          end: () => "+=" + (horizontalContainerRef.current.offsetWidth - window.innerWidth),
+          anticipatePin: 1,
+          onComplete: () => {
+            gsap.to(window, {
+              duration: 1,
+              scrollTo: { y: section4Ref.current },
+              ease: "power2.inOut",
+            });
+          },
         },
-      }).to(horizontalContainerRef.current, {
-        x: `-${window.innerWidth}px`,
-        ease: "none",
       });
-
     });
 
     return () => ctx.revert();
   }, []);
 
+  // JSX Tidak ada perubahan dari sebelumnya
   return (
     <div>
-      {/* SECTION 1 */}
       <div ref={section1Ref}>
         <Section1 />
       </div>
-
-      {/* SECTION 2 */}
       <div ref={section2Ref}>
         <Section2
           textWrapperRef={section2TextWrapperRef}
           tailRef={section2TailRef}
         />
       </div>
-      
-      {/* SECTION 3 & 4 (horizontal) */}
-      <div ref={horizontalContainerRef} className="horizontal-wrapper">
+      <div ref={section3Ref}>
         <Section3 />
+      </div>
+      <div ref={section4Ref}>
         <Section4 />
       </div>
-
-      
-      <div ref={section5Ref}>
-        <Section5 />
-        
-      </div>
-      <div ref={section6Ref}>
-        <Section6 />
-        
-      </div>
-         
-        
     </div>
   );
 }

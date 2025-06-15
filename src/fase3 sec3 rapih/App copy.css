@@ -8,12 +8,6 @@ body {
 }
 
 
-.horizontal-wrapper {
-  display: flex;
-  flex-direction: row;
-  width: max-content;
-  height: 100vh;
-}
 
 .panel {
   width: 100vw;
@@ -37,15 +31,7 @@ body {
 }
 
 .section-4 {
-  background-color: #3D365C; /* Warna ungu untuk Section 4 */
-  color: #F8B55F; /* Warna teks putih agar kontras */
-}
-.section-5 {
-  background-color: #2e2e2e; /* Warna ungu untuk Section 4 */
-  color: #ffffff; /* Warna teks putih agar kontras */
-}
-.section-6 {
-  background-color: #202020; /* Warna ungu untuk Section 4 */
+  background-color: #8e44ad; /* Warna ungu untuk Section 4 */
   color: #ffffff; /* Warna teks putih agar kontras */
 }
 

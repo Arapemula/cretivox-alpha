@@ -1,0 +1,22 @@
+/* src/css/containerkeempat.css */
+
+.horizontal-scroll-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+/* ... dan semua sisa kode CSS yang Anda berikan ... */
+.hover-label {
+  position: fixed;
+  background: #222;
+  color: #fff44f;
+  padding: 6px 16px;
+  border-radius: 8px;
+  pointer-events: none;
+  font-weight: bold;
+  z-index: 9999;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  font-size: 1rem;
+  transition: opacity 0.2s;
+}

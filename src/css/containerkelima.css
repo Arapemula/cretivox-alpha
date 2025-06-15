@@ -1,0 +1,50 @@
+/* src/css/containerkelima.css */
+
+.lakban-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Penting agar teks tidak keluar dari container */
+  position: relative;
+}
+
+.lakban5, .lakban6, .lakban7, .lakban8 {
+  position: absolute;
+  left: -20%; /* Mulai dari luar layar kiri */
+  width: 140%; /* Lebih lebar dari layar agar rotasi tidak menciptakan sudut kosong */
+  background-color: #ffc107; /* Contoh warna kuning lakban */
+  padding: 10px 0;
+  white-space: nowrap; /* Memastikan teks tidak terpotong ke bawah */
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  color: #333;
+  border-top: 2px dashed rgba(0, 0, 0, 0.2);
+  border-bottom: 2px dashed rgba(0, 0, 0, 0.2);
+}
+
+.lakban5 {
+  top: 15%;
+  transform: rotate(-5deg);
+}
+
+.lakban6 {
+  top: 35%;
+  transform: rotate(4deg);
+  background-color: #ff9800; /* Warna berbeda untuk variasi */
+}
+
+.lakban7 {
+  top: 55%;
+  transform: rotate(-6deg);
+}
+
+.lakban8 {
+  top: 75%;
+  transform: rotate(3deg);
+  background-color: #ff9800; /* Warna berbeda untuk variasi */
+}
+
+.text-scroll {
+  display: inline-block; /* Membuatnya bisa dianimasikan dengan GSAP */
+  font-size: 2rem;
+  width: max-content; /* Lebar sesuai konten */
+}
