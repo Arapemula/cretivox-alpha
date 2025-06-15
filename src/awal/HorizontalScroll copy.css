@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.horizontal-scroll-container {
+  display: flex;
+  overflow: hidden;
+  width: 400vw; /* 4 sections, each taking 100vw */
+  height: 100vh;
+}
+
+.horizontal-container {
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+  height: 100vh;
+}
+
+.panel {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+}
+
+/* Add special width for section-2 */
+.section-2 {
+  width: 200vw; /* Double width for section 2 */
+  background-color: #f39c12;
+}
+
+/* Ensure other sections maintain regular width */
+
+
+.section {
+  flex: 0 0 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  background: linear-gradient(135deg, #646cff, #61dafb);
+  color: white;
+}
+.section:nth-child(2) {
+  background: linear-gradient(135deg, #ff6f61, #ff9f61);
+}
+.section:nth-child(3) {
+  background: linear-gradient(135deg, #61ff6f, #61ff9f);
+}
+.section:nth-child(4) {
+  background: linear-gradient(135deg, #6f61ff, #9f61ff);
+}
+
+.section-1 {
+  background-color: #111;
+}
+
+.section-2 {
+  background-color: #f39c12;
+}
+
+.section-3 {
+  background-color: #2980b9;
+}
+
+.section-4 {
+  background-color: #27ae60;
+}
