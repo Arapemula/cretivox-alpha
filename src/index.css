@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Caprasimo&display=swap");
 
+
+body::-webkit-scrollbar {
+  display: none;
+}
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

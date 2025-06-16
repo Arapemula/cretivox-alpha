@@ -32,7 +32,7 @@ function App() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // SECTION 1 scroll-to-next
+      
       gsap
         .timeline({
           scrollTrigger: {
@@ -57,7 +57,7 @@ function App() {
         .to("#text3", { opacity: 1, duration: 0.5 })
         .to("#arhab-img", { opacity: 1, duration: 0.4 });
 
-      // SECTION 2 scroll x text
+      
       const finalX =
         window.innerWidth / 2 -
         (section2TailRef.current.offsetLeft +
@@ -70,7 +70,6 @@ function App() {
             start: "top bottom",
             end: "bottom top",
             scrub: 1,
-            markers: true,
           },
         })
         .fromTo(
@@ -79,7 +78,7 @@ function App() {
           { x: finalX, ease: "none" }
         );
 
-      // SECTION 2 scroll-to horizontal
+      
       gsap.timeline({
         scrollTrigger: {
           trigger: section2Ref.current,
@@ -97,6 +96,7 @@ function App() {
         },
       });
 
+      
       gsap
         .timeline({
           scrollTrigger: {
@@ -123,6 +123,7 @@ function App() {
           ease: "none",
         });
 
+      
       gsap.timeline({
         scrollTrigger: {
           trigger: section7Ref.current,
@@ -130,7 +131,6 @@ function App() {
           end: "+=180%",
           pin: true,
           scrub: true,
-          markers: true,
           onLeave: () => {
             gsap.to(window, {
               duration: 1,
@@ -141,6 +141,7 @@ function App() {
         },
       });
 
+      
       const section8Duration = 4000;
       const slideDuration = 1000;
       const totalPinDuration = 4000;
@@ -152,7 +153,6 @@ function App() {
           scrub: 1,
           start: "top top",
           end: `+=${totalPinDuration}`,
-          markers: true,
         },
       });
 

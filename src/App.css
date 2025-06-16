@@ -2,6 +2,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Caprasimo&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 
+
+body::-webkit-scrollbar {
+  display: none;
+}
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 body {
   margin: 0;
   padding: 0;
