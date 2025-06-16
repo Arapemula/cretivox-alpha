@@ -1,0 +1,14 @@
+.scroll-text-wrapper {
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.scroll-text {
+  font-size: 8vw;
+  margin: 0;
+}
+
+.highlight-text {
+  font-family: 'Caprasimo', cursive;
+  color: #FBDB93; 
+}

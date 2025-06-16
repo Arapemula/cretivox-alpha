@@ -1,0 +1,32 @@
+.section-7 {
+  background-color: #090909;
+  color: #39FF14;
+  padding: 2rem;
+  font-family: "Source Code Pro", monospace;
+}
+
+.section7-title {
+  font-size: 4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #39FF14;
+  text-shadow:
+    0 0 2px #39FF14,
+    0 0 5px #39FF14,
+    0 0 10px #00FF00,
+    0 0 15px #00FF00;
+}
+
+.section7-subtitle {
+  font-size: 1.75rem;
+  margin-top: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #39FF14;
+  text-shadow:
+    0 0 2px #39FF14,
+    0 0 5px #39FF14,
+    0 0 10px #00FF00,
+    0 0 15px #00FF00;
+}

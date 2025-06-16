@@ -1,8 +1,7 @@
-// src/components/Section4.jsx
-
 import React from "react";
 import HorizontalScroll from "../assetBits/HorizontalScroll";
 import "../assetBits/HorizontalScroll.css";
+import "../css/Section4.css"; 
 
 const songCovers = [
   {
@@ -25,19 +24,12 @@ const songCovers = [
 ];
 
 const Section4 = () => {
-  // Buat item dengan struktur JSX flip-card yang baru
   const itemsWithFlipCard = songCovers.map((item, index) => ({
     content: (
       <div className="flip-card" key={index}>
         <div className="flip-card-inner">
-          <div className="flip-card-front">
-            {/* Sisi depan berisi gambar */}
-            {item.content}
-          </div>
-          <div className="flip-card-back">
-            {/* Sisi belakang berisi label */}
-            {item.label}
-          </div>
+          <div className="flip-card-front">{item.content}</div>
+          <div className="flip-card-back">{item.label}</div>
         </div>
       </div>
     ),
@@ -45,14 +37,11 @@ const Section4 = () => {
 
   return (
     <section className="panel section-4 d-flex flex-column align-items-center justify-content-center">
-      <div className="text-center mb-5">
+      <div className="section4-header">
         <h1 className="display-4 fw-bold judulLagu">Lagu favorit?</h1>
-        <p className="lead" style={{ color: "#F8B55F" }}>
-          Hover on cover to flip
-        </p>
+        <p className="lead section4-subtext">Hover on cover to flip</p>
       </div>
 
-      {/* Teruskan item dengan struktur baru ke komponen anak */}
       <HorizontalScroll items={itemsWithFlipCard} />
     </section>
   );

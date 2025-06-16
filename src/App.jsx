@@ -23,13 +23,16 @@ function App() {
   const section2TextWrapperRef = useRef(null);
   const section2TailRef = useRef(null);
   const horizontalContainerRef = useRef(null);
+  const section3Ref = useRef(null);
+  const section4Ref = useRef(null);
   const section5Ref = useRef(null);
   const section6Ref = useRef(null);
+  const section7Ref = useRef(null);
   const section89WrapperRef = useRef(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Animasi untuk Section 1-2
+      // SECTION 1 scroll-to-next
       gsap
         .timeline({
           scrollTrigger: {
@@ -47,18 +50,19 @@ function App() {
             },
           },
         })
-        .to("#text1", { opacity: 1, duration: 0.3 })
-        .to("#text1", { opacity: 0, duration: 0.3 })
-        .to("#text2", { opacity: 1, duration: 0.3 })
-        .to("#text2", { opacity: 0, duration: 0.3 })
-        .to("#text3", { opacity: 1, duration: 0.3 })
+        .to("#text1", { opacity: 1, duration: 0.5 })
+        .to("#text1", { opacity: 0, duration: 0.5 })
+        .to("#text2", { opacity: 1, duration: 0.5 })
+        .to("#text2", { opacity: 0, duration: 0.5 })
+        .to("#text3", { opacity: 1, duration: 0.5 })
         .to("#arhab-img", { opacity: 1, duration: 0.4 });
 
-      // Animasi untuk Teks di Section 2
+      // SECTION 2 scroll x text
       const finalX =
         window.innerWidth / 2 -
         (section2TailRef.current.offsetLeft +
           section2TailRef.current.offsetWidth / 2);
+
       gsap
         .timeline({
           scrollTrigger: {
@@ -66,6 +70,7 @@ function App() {
             start: "top bottom",
             end: "bottom top",
             scrub: 1,
+            markers: true,
           },
         })
         .fromTo(
@@ -74,7 +79,7 @@ function App() {
           { x: finalX, ease: "none" }
         );
 
-      // Transisi dari Section 2 ke 3
+      // SECTION 2 scroll-to horizontal
       gsap.timeline({
         scrollTrigger: {
           trigger: section2Ref.current,
@@ -92,7 +97,6 @@ function App() {
         },
       });
 
-      // Animasi Horizontal untuk Section 3-4
       gsap
         .timeline({
           scrollTrigger: {
@@ -103,6 +107,15 @@ function App() {
             end: () =>
               "+=" +
               (horizontalContainerRef.current.offsetWidth - window.innerWidth),
+            onUpdate: (self) => {
+              if (self.progress === 1) {
+                gsap.to(window, {
+                  duration: 1,
+                  scrollTo: { y: section5Ref.current },
+                  ease: "power2.inOut",
+                });
+              }
+            },
           },
         })
         .to(horizontalContainerRef.current, {
@@ -110,13 +123,27 @@ function App() {
           ease: "none",
         });
 
-      // Master Timeline untuk Section 8 dan 9
-      // Durasi animasi internal Section 8 adalah 4000px
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: section7Ref.current,
+          start: "top top",
+          end: "+=180%",
+          pin: true,
+          scrub: true,
+          markers: true,
+          onLeave: () => {
+            gsap.to(window, {
+              duration: 1,
+              scrollTo: { y: section89WrapperRef.current },
+              ease: "power2.inOut",
+            });
+          },
+        },
+      });
+
       const section8Duration = 4000;
-      // Durasi untuk slide ke Section 9, kita beri 2000px
       const slideDuration = 1000;
-      // Total durasi pin adalah penjumlahan keduanya
-      const totalPinDuration = section8Duration + slideDuration;
+      const totalPinDuration = 4000;
 
       const masterTimeline = gsap.timeline({
         scrollTrigger: {
@@ -125,18 +152,12 @@ function App() {
           scrub: 1,
           start: "top top",
           end: `+=${totalPinDuration}`,
+          markers: true,
         },
       });
 
-      // Tahap 1: Jeda selama 4000px untuk memberi ruang pada animasi internal Section 8.
-      masterTimeline.to(
-        {},
-        {
-          duration: section8Duration,
-        }
-      );
+      masterTimeline.to({}, { duration: section8Duration });
 
-      // Tahap 2: Animasi slide ke Section 9 setelah jeda selesai.
       masterTimeline.to(section89WrapperRef.current, {
         x: `-${window.innerWidth}px`,
         ease: "none",
@@ -149,12 +170,10 @@ function App() {
 
   return (
     <div>
-      {/* Section 1 */}
       <div ref={section1Ref}>
         <Section1 />
       </div>
 
-      {/* Section 2 */}
       <div ref={section2Ref}>
         <Section2
           textWrapperRef={section2TextWrapperRef}
@@ -162,34 +181,35 @@ function App() {
         />
       </div>
 
-      {/* Section 3 & 4 (horizontal) */}
       <div ref={horizontalContainerRef} className="horizontal-wrapper">
-        <Section3 />
-        <Section4 />
+        <div ref={section3Ref}>
+          <Section3 />
+        </div>
+        <div ref={section4Ref}>
+          <Section4 />
+        </div>
       </div>
 
-      {/* Section 5 & 6 */}
       <div ref={section5Ref}>
         <Section5 />
       </div>
+
       <div ref={section6Ref}>
         <Section6 />
       </div>
 
-      {/* Section 7 */}
-      <Section7 />
+      <div ref={section7Ref}>
+        <Section7 />
+      </div>
 
-      {/* Wrapper untuk Section 8 & 9 */}
       <div
         ref={section89WrapperRef}
         className="horizontal-wrapper"
-        style={{ backgroundColor: "#000000" }} // Mencegah flash putih
+        style={{ backgroundColor: "#000000" }}
       >
-        {/* Wrapper tambahan untuk mengangkat lapisan Section8 */}
         <div style={{ position: "relative", zIndex: 1 }}>
           <Section8 />
         </div>
-
         <Section9 />
       </div>
     </div>

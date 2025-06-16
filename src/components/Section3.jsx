@@ -1,15 +1,12 @@
 import React from "react";
 import { TypeAnimation } from "react-type-animation";
+import "../css/Section3.css"; 
 
 const Section3 = () => {
   return (
-    <section
-      className="panel section-3 d-flex flex-column align-items-center justify-content-center"
-      style={{ color: "#ffffff" }}
-    >
-      <h2 style={{ fontWeight: 300, fontSize: "2.5rem" }}>
-        Bisa jadi siapa aja 😋
-      </h2>
+    <section className="panel section-3 d-flex flex-column align-items-center justify-content-center">
+      <h2 className="section3-subtitle">Bisa jadi siapa aja 😋</h2>
+
       <TypeAnimation
         sequence={[
           "Prompt Engineer",
@@ -27,7 +24,7 @@ const Section3 = () => {
         ]}
         wrapper="h1"
         speed={50}
-        style={{ fontSize: "5rem", fontWeight: "bold" }}
+        className="section3-animation"
         repeat={Infinity}
       />
     </section>

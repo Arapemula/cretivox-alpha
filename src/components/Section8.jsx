@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import "../css/containerketiga.css"; // pastikan path-nya sesuai
+import "../css/Section8.css"; 
 
 gsap.registerPlugin(ScrollTrigger);
 

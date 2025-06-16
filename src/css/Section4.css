@@ -1,0 +1,16 @@
+.section-4 {
+  background-color: #3D365C;
+  color: #F8B55F;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.section4-header {
+  margin-bottom: 40px;
+}
+
+.section4-subtext {
+  color: #F8B55F;
+  font-size: 1.25rem;
+  margin-top: 8px;
+}
