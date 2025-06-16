@@ -46,7 +46,7 @@ const Section4 = () => {
   return (
     <section className="panel section-4 d-flex flex-column align-items-center justify-content-center">
       <div className="text-center mb-5">
-        <h1 className="display-4 fw-bold">Favorite Songs</h1>
+        <h1 className="display-4 fw-bold judulLagu">Lagu favorit?</h1>
         <p className="lead" style={{ color: "#F8B55F" }}>
           Hover on cover to flip
         </p>

@@ -22,6 +22,8 @@ const Section3 = () => {
           1500,
           "Student",
           1500,
+          "Pacar kamu 😘",
+          1500,
         ]}
         wrapper="h1"
         speed={50}
